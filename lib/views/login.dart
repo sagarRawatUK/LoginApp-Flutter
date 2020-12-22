@@ -2,6 +2,7 @@ import 'package:LoginApp/helper/authGoogle.dart';
 import 'package:LoginApp/views/homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import 'package:http/http.dart' as http;
@@ -62,7 +63,10 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("LoginApp"),
+        title: Text(
+          "LoginApp",
+          style: GoogleFonts.raleway(fontSize: 20, fontWeight: FontWeight.bold),
+        ),
       ),
       body: Container(
         child: isLoading
@@ -73,6 +77,8 @@ class _LoginPageState extends State<LoginPage> {
                   children: [
                     SignInButton(
                       Buttons.Google,
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 15, vertical: 10),
                       onPressed: () {
                         AuthService().signin().then((value) async {
                           setState(() {
@@ -94,8 +100,13 @@ class _LoginPageState extends State<LoginPage> {
                         });
                       },
                     ),
+                    SizedBox(
+                      height: 10,
+                    ),
                     SignInButton(
                       Buttons.Facebook,
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 15, vertical: 20),
                       onPressed: () {
                         _loginWithFB();
                       },

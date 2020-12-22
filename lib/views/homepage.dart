@@ -1,6 +1,7 @@
 import 'package:LoginApp/helper/authGoogle.dart';
 import 'package:LoginApp/views/login.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends StatefulWidget {
@@ -43,7 +44,25 @@ class _HomePageState extends State<HomePage> {
               SizedBox(
                 height: 10,
               ),
-              Center(child: Text(widget.userName)),
+              Center(
+                  child: Text(
+                widget.userName,
+                style: GoogleFonts.raleway(fontSize: 15),
+              )),
+              SizedBox(
+                height: 10,
+              ),
+              RaisedButton(
+                child: Text("Logout"),
+                onPressed: () async {
+                  SharedPreferences prefs =
+                      await SharedPreferences.getInstance();
+                  prefs.clear();
+                  AuthService().signOutGoogle();
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (context) => LoginPage()));
+                },
+              )
             ],
           ),
         ));
