@@ -37,6 +37,7 @@ dependencies:
   shared_preferences:
   flutter_facebook_login:
   http:
+  provider:
 
 dev_dependencies:
   flutter_test:
